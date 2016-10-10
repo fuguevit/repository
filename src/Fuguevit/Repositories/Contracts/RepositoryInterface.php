@@ -5,78 +5,87 @@ namespace Fuguevit\Repositories\Contracts;
 interface RepositoryInterface
 {
     /**
-     * Fetch all items
+     * Fetch all items.
      *
      * @param array $columns
+     *
      * @return mixed
      */
-    public function all($columns = array('*'));
+    public function all($columns = ['*']);
 
     /**
-     * Create an item
+     * Create an item.
      *
      * @param array $data
+     *
      * @return mixed
      */
     public function create(array $data);
 
     /**
-     * Delete an item
+     * Delete an item.
      *
      * @param $id
-     * @return boolean
+     *
+     * @return bool
      */
     public function delete($id);
 
     /**
-     * Fetch an item by id
+     * Fetch an item by id.
      *
      * @param $id
      * @param array $columns
+     *
      * @return mixed
      */
-    public function find($id, $columns = array('*'));
+    public function find($id, $columns = ['*']);
 
     /**
-     * Fetch an item by value of specified field
+     * Fetch an item by value of specified field.
      *
      * @param $field
      * @param $value
      * @param array $columns
+     *
      * @return mixed
      */
-    public function findBy($field, $value, $columns = array('*'));
+    public function findBy($field, $value, $columns = ['*']);
 
     /**
-     * Fetch items by where clause
+     * Fetch items by where clause.
+     *
      * @param $where
      * @param array $columns
+     *
      * @return mixed
      */
-    public function findWhere($where, $columns = array('*'));
+    public function findWhere($where, $columns = ['*']);
 
     /**
-     * Paginate items
+     * Paginate items.
      *
      * @param $perPage
      * @param array $columns
+     *
      * @return mixed
      */
-    public function paginate($perPage = 1, $columns = array('*'));
+    public function paginate($perPage = 1, $columns = ['*']);
 
     /**
      * @param array $data
+     *
      * @return bool
      */
     public function saveModel(array $data);
 
     /**
-     * Update item
+     * Update item.
      *
      * @param array $data
      * @param $id
+     *
      * @return mixed
      */
     public function update(array $data, $id);
-
 }

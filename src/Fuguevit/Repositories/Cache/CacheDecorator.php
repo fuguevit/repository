@@ -2,11 +2,11 @@
 
 namespace Fuguevit\Repositories\Cache;
 
-use \BadMethodCallException;
+use BadMethodCallException;
+use Fuguevit\Repositories\Contracts\CacheInterface;
+use Illuminate\Container\Container as App;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Container\Container as App;
-use Fuguevit\Repositories\Contracts\CacheInterface;
 
 abstract class CacheDecorator implements CacheInterface
 {
@@ -24,18 +24,18 @@ abstract class CacheDecorator implements CacheInterface
     /**
      * You need to implement this per sub-class.
      *
-     * @return  string  Name of the repository class. Used for instiating the repository
-     *
+     * @return string Name of the repository class. Used for instiating the repository
      */
     abstract public function repository();
 
     /**
      * CacheDecorator constructor.
-     * @param App $app
+     *
+     * @param App        $app
      * @param Collection $collection
-     * @param bool $repository
+     * @param bool       $repository
      */
-    public function __construct(App $app, Collection $collection,$repository = false)
+    public function __construct(App $app, Collection $collection, $repository = false)
     {
         $this->app = $app;
         $this->collection = $collection;
@@ -48,7 +48,7 @@ abstract class CacheDecorator implements CacheInterface
     {
         $defaults = ['repository', 'setTtl', 'setEnabled', 'getConfig', 'initRepository',
             'doesMethodClearTag', 'clearCacheTag', 'getCache', 'putCache',
-            'isMethodCacheable', 'generateCacheKey', 'log' ];
+            'isMethodCacheable', 'generateCacheKey', 'log', ];
         $this->excludes = array_merge($defaults, $this->excludes);
     }
 
@@ -97,6 +97,7 @@ abstract class CacheDecorator implements CacheInterface
         if ($this->doesMethodClearTag($method)) {
             $this->clearCacheTag();
         }
+
         return $res;
     }
 
@@ -124,6 +125,7 @@ abstract class CacheDecorator implements CacheInterface
         if ($this->tags) {
             return Cache::tags($this->tags)->get($key);
         }
+
         return Cache::get($key);
     }
 
@@ -135,6 +137,7 @@ abstract class CacheDecorator implements CacheInterface
         if ($this->tags) {
             return Cache::tags($this->tags)->put($key, $res, $this->ttl);
         }
+
         return Cache::put($key, $res, $this->ttl);
     }
 
@@ -143,7 +146,7 @@ abstract class CacheDecorator implements CacheInterface
         if (method_exists($this->repository, $method)) {
             return call_user_func_array([$this->repository, $method], $arguments);
         }
-        Throw new BadMethodCallException("Method '{$method}' does not exist in the repository");
+        throw new BadMethodCallException("Method '{$method}' does not exist in the repository");
     }
 
     protected function isMethodCacheable($method)
@@ -151,6 +154,7 @@ abstract class CacheDecorator implements CacheInterface
         if ($this->excludes && in_array($method, $this->excludes)) {
             return false;
         }
+
         return true;
     }
 
@@ -158,10 +162,11 @@ abstract class CacheDecorator implements CacheInterface
     {
         $temp_params = array_dot($arguments);
         $params = '';
-        foreach($temp_params as $k => $v) {
+        foreach ($temp_params as $k => $v) {
             $params .= ".{$k}={$v}";
         }
         $key = "{$this->prefix_key}.{$method}{$params}";
+
         return $key;
     }
 }
