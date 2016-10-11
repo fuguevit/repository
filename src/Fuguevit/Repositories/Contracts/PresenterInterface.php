@@ -3,16 +3,14 @@
 namespace Fuguevit\Repositories\Contracts;
 
 /**
- * Interface PresenterInterface
- * @package Fuguevit\Repositories\Contracts
+ * Interface PresenterInterface.
  */
 interface PresenterInterface
 {
     /**
-     * Prepare a new or cached presenter instance
+     * Prepare a new or cached presenter instance.
      *
      * @return mixed
      */
     public function present();
-
 }

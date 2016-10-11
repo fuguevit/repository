@@ -19,5 +19,4 @@ class RepositoryTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
 }
