@@ -3,9 +3,7 @@
 namespace Fuguevit\Repositories\Contracts;
 
 /**
- * Interface RepositoryInterface
- *
- * @package Fuguevit\Repositories\Contracts
+ * Interface RepositoryInterface.
  */
 interface RepositoryInterface
 {
@@ -82,6 +80,7 @@ interface RepositoryInterface
      * @param $field
      * @param array $values
      * @param array $columns
+     *
      * @return mixed
      */
     public function findIn($field, array $values, $columns = ['*']);
@@ -92,6 +91,7 @@ interface RepositoryInterface
      * @param $field
      * @param array $values
      * @param array $columns
+     *
      * @return mixed
      */
     public function findNotIn($field, array $values, $columns = ['*']);
@@ -121,16 +121,17 @@ interface RepositoryInterface
      *
      * @param $field
      * @param string $direction
+     *
      * @return mixed
      */
     public function orderBy($field, $direction = 'asc');
 
     /**
-     * Load relations
+     * Load relations.
      *
      * @param $relations
+     *
      * @return mixed
      */
     public function with(array $relations);
-
 }

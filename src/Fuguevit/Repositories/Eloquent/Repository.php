@@ -48,8 +48,10 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      * Set model.
      *
      * @param $eloquentModel
-     * @return Model
+     *
      * @throws RepositoryException
+     *
+     * @return Model
      */
     public function setModel($eloquentModel)
     {
@@ -159,6 +161,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * @param $relation
      * @param $closure
+     *
      * @return $this
      */
     public function whereHas($relation, $closure)
@@ -171,6 +174,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * @param $field
      * @param string $direction
+     *
      * @return $this
      */
     public function orderBy($field, $direction = 'asc')
@@ -318,6 +322,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      * @param $field
      * @param array $values
      * @param array $columns
+     *
      * @return mixed
      */
     public function findIn($field, array $values, $columns = ['*'])
@@ -333,12 +338,13 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      * @param $field
      * @param array $values
      * @param array $columns
+     *
      * @return mixed
      */
     public function findNotIn($field, array $values, $columns = ['*'])
     {
         $this->applyCriteria();
-        $result =  $this->model->whereNotIn($field, $values)->get($columns);
+        $result = $this->model->whereNotIn($field, $values)->get($columns);
         $this->resetModel();
 
         return $result;
@@ -347,7 +353,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * @param $where
      * @param array $columns
-     * @param bool $or
+     * @param bool  $or
      *
      * @return mixed
      */
