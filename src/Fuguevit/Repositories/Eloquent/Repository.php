@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
- * Class Repository
+ * Class Repository.
  */
 abstract class Repository implements CriteriaInterface, RepositoryInterface
 {
@@ -50,6 +50,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         if (!$model instanceof Model) {
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
+
         return $this->model = $model;
     }
 
@@ -96,7 +97,6 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     public function pushCriteria(Criteria $criteria)
     {
         if ($this->preventCriteriaOverwriting) {
-
             $key = $this->criteria->search(function ($item) use ($criteria) {
                 return is_object($item) and (get_class($item) == get_class($criteria));
             });
@@ -154,6 +154,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     {
         $this->applyCriteria();
         $lists = $this->model->lists($value, $key);
+
         return $lists->all();
     }
 
@@ -355,7 +356,6 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     {
         return $this->findWhere([$attribute => [$attribute, '!=', $value]], $columns);
     }
-
 
     /**
      * @param array $relations
