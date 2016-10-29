@@ -23,5 +23,4 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         //
     }
-
 }

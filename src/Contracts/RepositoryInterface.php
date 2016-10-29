@@ -90,6 +90,7 @@ interface RepositoryInterface
      * @param $field
      * @param $value
      * @param array $columns
+     *
      * @return mixed
      */
     public function findAllBy($field, $value, $columns = ['*']);
@@ -100,6 +101,7 @@ interface RepositoryInterface
      * @param $field
      * @param $value
      * @param array $columns
+     *
      * @return mixed
      */
     public function findAllExcept($field, $value, $columns = ['*']);

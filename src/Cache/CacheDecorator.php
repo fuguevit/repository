@@ -11,70 +11,70 @@ use Illuminate\Support\Facades\Cache;
 abstract class CacheDecorator implements CacheInterface
 {
     /**
-     * repository
+     * repository.
      *
      * @var string
      */
     public $repository;
 
     /**
-     * ttl
+     * ttl.
      *
-     * @var integer
+     * @var int
      */
     protected $ttl;
 
     /**
-     * prefix key
+     * prefix key.
      *
      * @var string
      */
     protected $prefix_key;
 
     /**
-     * enable caching
+     * enable caching.
      *
      * @var bool
      */
     protected $enabled = true;
 
     /**
-     * functions that exclude of caching
+     * functions that exclude of caching.
      *
      * @var bool
      */
     protected $excludes = false;
 
     /**
-     * array of tag cleaners
+     * array of tag cleaners.
      *
      * @var array
      */
     protected $tag_cleaners = [];
 
     /**
-     * enable cache tag
+     * enable cache tag.
      *
      * @var bool
      */
     protected $tags = false;
 
     /**
-     * debug mode
+     * debug mode.
      *
      * @var bool
      */
     protected $debug = false;
 
     /**
-     * container
+     * container.
      *
      * @var App
      */
     protected $app;
 
     /**
-     * collection
+     * collection.
      *
      * @var Collection
      */
@@ -110,7 +110,7 @@ abstract class CacheDecorator implements CacheInterface
     protected function initExcludes()
     {
         $defaults = ['repository', 'setTtl', 'setEnabled', 'getConfig', 'initRepository', 'doesMethodClearTag',
-            'clearCacheTag', 'getCache', 'putCache', 'isMethodCacheable', 'generateCacheKey', 'log'];
+            'clearCacheTag', 'getCache', 'putCache', 'isMethodCacheable', 'generateCacheKey', 'log', ];
         $this->excludes = array_merge($defaults, $this->excludes);
     }
 
@@ -161,6 +161,7 @@ abstract class CacheDecorator implements CacheInterface
     /**
      * @param $method
      * @param $arguments
+     *
      * @return bool
      */
     public function __call($method, $arguments)
@@ -184,6 +185,7 @@ abstract class CacheDecorator implements CacheInterface
 
     /**
      * @param $method
+     *
      * @return bool
      */
     protected function doesMethodClearTag($method)
@@ -206,6 +208,7 @@ abstract class CacheDecorator implements CacheInterface
 
     /**
      * @param $key
+     *
      * @return bool
      */
     protected function getCache($key)
@@ -224,6 +227,7 @@ abstract class CacheDecorator implements CacheInterface
     /**
      * @param $key
      * @param $res
+     *
      * @return bool
      */
     protected function putCache($key, $res)
@@ -241,6 +245,7 @@ abstract class CacheDecorator implements CacheInterface
     /**
      * @param $method
      * @param $arguments
+     *
      * @return mixed
      */
     protected function callMethod($method, $arguments)
@@ -253,6 +258,7 @@ abstract class CacheDecorator implements CacheInterface
 
     /**
      * @param $method
+     *
      * @return bool
      */
     protected function isMethodCacheable($method)
@@ -267,6 +273,7 @@ abstract class CacheDecorator implements CacheInterface
     /**
      * @param $method
      * @param $arguments
+     *
      * @return string
      */
     protected function generateCacheKey($method, $arguments)

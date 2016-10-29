@@ -360,7 +360,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      *
      * @return $this
      */
-    function whereHas($relation, $closure)
+    public function whereHas($relation, $closure)
     {
         $this->model = $this->model->whereHas($relation, $closure);
 
@@ -375,7 +375,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      *
      * @return $this
      */
-    function whereDoesntHave($relation, $closure)
+    public function whereDoesntHave($relation, $closure)
     {
         $this->model = $this->model->whereDoesntHave($relation, $closure);
 
@@ -393,6 +393,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     public function __call($method, $arguments)
     {
         $this->applyCriteria();
+
         return $this->callMethod($method, $arguments);
     }
 
