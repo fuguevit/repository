@@ -45,18 +45,17 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
-     * Create articles
+     * Create articles.
      *
      * @param $number
      */
     protected function createArticles($number)
     {
-        for($i = 0; $i < $number; $i++) {
+        for ($i = 0; $i < $number; $i++) {
             Article::create([
                 'title' => 'title-'.$i,
-                'body'  => str_random(100)
+                'body'  => str_random(100),
             ]);
         }
     }
-
 }

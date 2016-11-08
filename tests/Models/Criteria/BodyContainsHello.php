@@ -2,8 +2,8 @@
 
 namespace Fuguevit\Repositories\Tests\Models\Criteria;
 
-use Fuguevit\Repositories\Criteria\Criteria;
 use Fuguevit\Repositories\Contracts\RepositoryInterface as Repository;
+use Fuguevit\Repositories\Criteria\Criteria;
 
 class BodyContainsHello extends Criteria
 {
@@ -13,6 +13,7 @@ class BodyContainsHello extends Criteria
     public function apply($model, Repository $repository)
     {
         $model = $model->where('body', 'LIKE', '%hello%');
+
         return $model;
     }
 }

@@ -10,5 +10,4 @@ class ArticleRepository extends Repository
     {
         return 'Fuguevit\Repositories\Tests\Models\Article';
     }
-
 }

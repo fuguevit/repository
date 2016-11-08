@@ -2,13 +2,12 @@
 
 namespace Fuguevit\Repositories\Tests;
 
+use Fuguevit\Repositories\Tests\Models\Repositories\ArticleRepository;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Collection;
-use Fuguevit\Repositories\Tests\Models\Repositories\ArticleRepository;
 
 class RepositoryTest extends TestCase
 {
-
     protected $articleRepository;
 
     /**
@@ -37,8 +36,9 @@ class RepositoryTest extends TestCase
     {
         $article = $this->articleRepository->create([
             'title' => 'foo',
-            'body'  => 'bar'
+            'body'  => 'bar',
         ]);
+
         return $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $article);
     }
 
@@ -51,6 +51,7 @@ class RepositoryTest extends TestCase
             'title' => 'foo',
             'body'  => 'bar',
         ]);
+
         return $this->assertTrue($result);
     }
 
@@ -61,7 +62,7 @@ class RepositoryTest extends TestCase
     {
         $id = $this->articleRepository->create([
             'title' => 'foo',
-            'body'  => 'bar'
+            'body'  => 'bar',
         ])->id;
 
         $updated = $this->articleRepository->update(['title' => 'bar', 'body'  => 'foo'], $id);
@@ -87,11 +88,12 @@ class RepositoryTest extends TestCase
     public function test_it_can_use_enhanced_find()
     {
         $this->createArticles(20);
-        
+
         $result = $this->articleRepository->findWhere([
-            'id.less_than' => ['id', '<', '18'],
-            'id.more_equal_than' => ['id', '>=', '9']
+            'id.less_than'       => ['id', '<', '18'],
+            'id.more_equal_than' => ['id', '>=', '9'],
         ]);
+
         return $this->assertCount(9, $result->toArray());
     }
 
@@ -106,5 +108,4 @@ class RepositoryTest extends TestCase
 
         return $this->assertInstanceOf('Illuminate\Pagination\LengthAwarePaginator', $result);
     }
-
 }
