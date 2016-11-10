@@ -2,9 +2,9 @@
 
 namespace Fuguevit\Repositories\Console\Commands;
 
+use Fuguevit\Repositories\Console\Commands\Creators\CriteriaCreator;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Fuguevit\Repositories\Console\Commands\Creators\CriteriaCreator;
 
 class MakeCriteriaCommand extends Command
 {
@@ -58,8 +58,8 @@ class MakeCriteriaCommand extends Command
         // Set criteria.
         $criteria = $arguments['criteria'];
         // Create the criteria.
-        if($this->creator->create($criteria)) {
-            $this->info("Create criteria class successfully!");
+        if ($this->creator->create($criteria)) {
+            $this->info('Create criteria class successfully!');
         }
     }
 
@@ -69,8 +69,7 @@ class MakeCriteriaCommand extends Command
     protected function getArguments()
     {
         return [
-            ['criteria', InputArgument::REQUIRED, 'Criteria Name.']
+            ['criteria', InputArgument::REQUIRED, 'Criteria Name.'],
         ];
     }
-
 }

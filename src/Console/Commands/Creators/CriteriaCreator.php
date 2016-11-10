@@ -5,9 +5,7 @@ namespace Fuguevit\Repositories\Console\Commands\Creators;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class CriteriaCreator
- *
- * @package Fuguevit\Repositories\Console\Commands\Creators
+ * Class CriteriaCreator.
  */
 class CriteriaCreator
 {
@@ -49,12 +47,14 @@ class CriteriaCreator
      * Create the repository.
      *
      * @param $criteria
+     *
      * @return int
      */
     public function create($criteria)
     {
         $this->setCriteria($criteria);
         $this->createDirectory();
+
         return $this->createClass();
     }
 
@@ -66,7 +66,7 @@ class CriteriaCreator
     protected function createDirectory()
     {
         $directory = $this->getDirectory();
-        if(!$this->files->isDirectory($directory)) {
+        if (!$this->files->isDirectory($directory)) {
             $this->files->makeDirectory($directory, 0755, true);
         }
     }
@@ -90,9 +90,10 @@ class CriteriaCreator
     {
         $criteria_name = $this->getCriteria();
 
-        if(!strpos($criteria_name, 'Criteria') !== false) {
+        if (!strpos($criteria_name, 'Criteria') !== false) {
             $criteria_name .= 'Criteria';
         }
+
         return $criteria_name;
     }
 
@@ -104,7 +105,7 @@ class CriteriaCreator
     protected function stripCriteriaName()
     {
         $repository = strtolower($this->getRepository());
-        $stripped   = str_replace("repository", "", $repository);
+        $stripped = str_replace('repository', '', $repository);
         $result = ucfirst($stripped);
 
         return $result;
@@ -122,7 +123,7 @@ class CriteriaCreator
 
         $populate_data = [
             'criteria_namespace' => $criteria_namespace,
-            'criteria_class'     => $criteria_class
+            'criteria_class'     => $criteria_class,
         ];
 
         return $populate_data;
@@ -150,7 +151,7 @@ class CriteriaCreator
         // Stub path.
         $stub_path = __DIR__.'/../../../../resources/stubs/';
 
-        $stub = $this->files->get($stub_path."criteria.stub");
+        $stub = $this->files->get($stub_path.'criteria.stub');
 
         return $stub;
     }

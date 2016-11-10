@@ -13,7 +13,7 @@ class MakeCommandTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Test make:repository command.
      */
@@ -24,8 +24,8 @@ class MakeCommandTest extends TestCase
             '--model'    => 'Test',
         ]);
 
-        $test_path = __DIR__ . "/../app";
-        $test_repository = $test_path . DIRECTORY_SEPARATOR . "Repositories/TestsRepository.php";
+        $test_path = __DIR__.'/../app';
+        $test_repository = $test_path.DIRECTORY_SEPARATOR.'Repositories/TestsRepository.php';
 
         $this->assertFileExists($test_repository);
         app()['FileSystem']->cleanDirectory($test_path);
@@ -40,11 +40,10 @@ class MakeCommandTest extends TestCase
             'criteria'  => 'Test',
         ]);
 
-        $test_path = __DIR__ . "/../app";
-        $test_criteria = $test_path . DIRECTORY_SEPARATOR . "Repositories/Criteria/TestCriteria.php";
+        $test_path = __DIR__.'/../app';
+        $test_criteria = $test_path.DIRECTORY_SEPARATOR.'Repositories/Criteria/TestCriteria.php';
 
         $this->assertFileExists($test_criteria);
         app()['FileSystem']->cleanDirectory($test_path);
     }
-
 }

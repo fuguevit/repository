@@ -2,15 +2,13 @@
 
 namespace Fuguevit\Repositories\Console\Commands;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use Fuguevit\Repositories\Console\Commands\Creators\RepositoryCreator;
+use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Class MakeRepositoryCommand
- *
- * @package Fuguevit\Repositories\Console\Commands
+ * Class MakeRepositoryCommand.
  */
 class MakeRepositoryCommand extends Command
 {
@@ -41,7 +39,7 @@ class MakeRepositoryCommand extends Command
     {
         parent::__construct();
         // Set the creator.
-        $this->creator  = $creator;
+        $this->creator = $creator;
         // Set composer.
         $this->composer = app()['composer'];
     }
@@ -72,8 +70,8 @@ class MakeRepositoryCommand extends Command
         // Set model.
         $model = $options['model'];
         // Create the repository.
-        if($this->creator->create($repository, $model)) {
-            $this->info("Create repository class successfully!");
+        if ($this->creator->create($repository, $model)) {
+            $this->info('Create repository class successfully!');
         }
     }
 
@@ -83,7 +81,7 @@ class MakeRepositoryCommand extends Command
     protected function getArguments()
     {
         return [
-            ['repository', InputArgument::REQUIRED, 'Repository name.']
+            ['repository', InputArgument::REQUIRED, 'Repository name.'],
         ];
     }
 
@@ -96,5 +94,4 @@ class MakeRepositoryCommand extends Command
             ['model', null, InputOption::VALUE_OPTIONAL, 'Model name.', null],
         ];
     }
-
 }

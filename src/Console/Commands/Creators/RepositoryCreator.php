@@ -6,9 +6,7 @@ use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class RepositoryCreator
- *
- * @package Fuguevit\repository\Console\Commands\Creators
+ * Class RepositoryCreator.
  */
 class RepositoryCreator
 {
@@ -72,6 +70,7 @@ class RepositoryCreator
      *
      * @param $repository
      * @param $model
+     *
      * @return int
      */
     public function create($repository, $model)
@@ -79,6 +78,7 @@ class RepositoryCreator
         $this->setRepository($repository);
         $this->setModel($model);
         $this->createDirectory();
+
         return $this->createClass();
     }
 
@@ -90,7 +90,7 @@ class RepositoryCreator
     protected function createDirectory()
     {
         $directory = $this->getDirectory();
-        if(!$this->files->isDirectory($directory)) {
+        if (!$this->files->isDirectory($directory)) {
             $this->files->makeDirectory($directory, 0755, true);
         }
     }
@@ -114,9 +114,10 @@ class RepositoryCreator
     {
         $repository_name = $this->getRepository();
 
-        if(!strpos($repository_name, 'Repository') !== false) {
+        if (!strpos($repository_name, 'Repository') !== false) {
             $repository_name .= 'Repository';
         }
+
         return $repository_name;
     }
 
@@ -129,11 +130,12 @@ class RepositoryCreator
     {
         $model = $this->getModel();
 
-        if(isset($model) && !empty($model)) {
+        if (isset($model) && !empty($model)) {
             $model_name = $model;
         } else {
             $model_name = Inflector::singularize($this->stripRepositoryName());
         }
+
         return $model_name;
     }
 
@@ -145,7 +147,7 @@ class RepositoryCreator
     protected function stripRepositoryName()
     {
         $repository = strtolower($this->getRepository());
-        $stripped   = str_replace("repository", "", $repository);
+        $stripped = str_replace('repository', '', $repository);
         $result = ucfirst($stripped);
 
         return $result;
@@ -167,7 +169,7 @@ class RepositoryCreator
             'repository_namespace' => $repository_namespace,
             'repository_class'     => $repository_class,
             'model_path'           => $model_path,
-            'model_name'           => $model_name
+            'model_name'           => $model_name,
         ];
 
         return $populate_data;
@@ -195,7 +197,7 @@ class RepositoryCreator
         // Stub path.
         $stub_path = __DIR__.'/../../../../resources/stubs/';
 
-        $stub = $this->files->get($stub_path."repository.stub");
+        $stub = $this->files->get($stub_path.'repository.stub');
 
         return $stub;
     }
