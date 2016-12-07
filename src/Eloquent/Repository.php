@@ -324,7 +324,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         } else {
             $collection = $model->paginate($perPage, $columns);
         }
-        
+
         $this->resetModel();
 
         return $collection;
