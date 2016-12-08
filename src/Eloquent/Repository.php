@@ -255,7 +255,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         $this->applyCriteria();
 
         $model = $this->model->whereIn($field, $values);
-        if($perPage) {
+        if ($perPage) {
             $collection = $model->paginate($perPage, $columns);
         } else {
             $collection = $model->get($columns);
@@ -273,7 +273,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         $this->applyCriteria();
 
         $model = $this->model->whereNotIn($field, $values);
-        if($perPage) {
+        if ($perPage) {
             $collection = $model->paginate($perPage, $columns);
         } else {
             $collection = $model->get($columns);
