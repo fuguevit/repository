@@ -158,7 +158,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     public function lists($value, $key = null)
     {
         $this->applyCriteria();
-        $lists = $this->model->lists($value, $key);
+        $lists = $this->model->pluck($value, $key);
 
         return $lists->all();
     }

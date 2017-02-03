@@ -78,7 +78,7 @@ class RepositoryTest extends TestCase
         $this->createArticles(20);
 
         $result = $this->articleRepository->find(10);
-
+        
         $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $result);
     }
 
@@ -95,6 +95,17 @@ class RepositoryTest extends TestCase
         ]);
 
         $this->assertCount(9, $result->toArray());
+    }
+
+    /**
+     * Test repository can use lists function.
+     */
+    public function test_it_can_use_lists()
+    {
+        $this->createArticles(20);
+        
+        $result = $this->articleRepository->lists('id');
+        $this->assertCount(20, $result);
     }
 
     /**

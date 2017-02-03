@@ -7,13 +7,13 @@ Laravel5 Repository 是对Laravel的仓库模式的实现。
 在本地工程目录下面，输入下列命令行：
 
 ```php
-composer require "fuguevit/repository:^1.0.0"
+composer require "fuguevit/repositories:^1.0.0"
 ```
 
 或者，在composer.json文件内插入下行代码：
 
 ```php
-"fuguevit/repository": "^1.0.0"
+"fuguevit/repositories": "^1.0.0"
 ```
 
 保存后，执行 `composer update`
